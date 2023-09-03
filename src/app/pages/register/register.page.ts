@@ -12,7 +12,7 @@ export class RegisterPage implements OnInit {
   formRegister = {
     nombre: "",
     apellido: "",
-    email: "",
+    usuario: "",
     password: ""
   }
 
@@ -27,14 +27,14 @@ export class RegisterPage implements OnInit {
 
     let datosEnviarLog: NavigationExtras = {
       queryParams: {
-        nameUser: this.formRegister.nombre,
-        lastNameUsar: this.formRegister.apellido,
-        emailUser: this.formRegister.email,
-        passwordUser: this.formRegister.password
+        name: this.formRegister.nombre,
+        lastName: this.formRegister.apellido,
+        usuario: this.formRegister.usuario,
+        password: this.formRegister.password
       }
     }
 
-    this.router.navigate(['/home', datosEnviarLog]);
+    this.router.navigate(['/login', datosEnviarLog]);
 
   }
 
