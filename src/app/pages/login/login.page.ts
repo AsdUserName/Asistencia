@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
 
     let datosEnviar: NavigationExtras = {
       queryParams: {
-        emailUsuario: this.formLogin.usuario,
+        nameUsuario: this.formLogin.usuario,
         edad: 24
       }
     }
@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/home'], datosEnviar);
 
     //guardar info en el storage
-    this.storage.set("nombreUsuario","Juan")
+    this.storage.set("usuario","Juan")
     this.storage.get("")
 
   }
