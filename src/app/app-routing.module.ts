@@ -26,8 +26,10 @@ const routes: Routes = [
     path: 'not-found',
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
-
-
+  {
+    path: 'r-password',
+    loadChildren: () => import('./pages/r-password/r-password.module').then( m => m.RPasswordPageModule)
+  },
   {
     path: '**',
     redirectTo: 'not-found',

@@ -12,7 +12,7 @@ export class RegisterPage implements OnInit {
   formRegister = {
     nombre: "",
     apellido: "",
-    usuario: "",
+    nameUsuario: "",
     password: ""
   }
 
@@ -29,7 +29,7 @@ export class RegisterPage implements OnInit {
       queryParams: {
         name: this.formRegister.nombre,
         lastName: this.formRegister.apellido,
-        usuario: this.formRegister.usuario,
+        usuario: this.formRegister.nameUsuario,
         password: this.formRegister.password
       }
     }

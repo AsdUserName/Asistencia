@@ -17,7 +17,7 @@
       <ion-col size="12">
         <ion-item>
           <ion-label position="floating">Usuario</ion-label>
-          <ion-input [(ngModel)]="formLogin.usuario" type="text" placeholder="Ej: Juan123"></ion-input>
+          <ion-input [(ngModel)]="formLogin.usuario" type="text" placeholder="Ej: Juan123" value="{{datosReg}}"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col size="12">
@@ -37,7 +37,7 @@
       </ion-row>
     </ion-grid>
     <div class="centrar m-a">
-      <a href="">¿Olvidaste tu contraseña?</a>
+      <a [routerLink]="['/r-password']" href="">¿Olvidaste tu contraseña?</a>
     </div>
     <hr>
   </div>
@@ -54,3 +54,7 @@
     </ion-grid>
   </div>
 </ion-footer>
+
+<div>
+  <ion-alert [isOpen]="isAlertOpen" header="Alert" subHeader="Important message" message="This is an alert!" [buttons]="alertButtons" (didDismiss)="setOpen(true)"></ion-alert>
+</div>

@@ -14,9 +14,9 @@ export class HomePage {
 
     this.rutaActiva.queryParams.subscribe(params =>{
 
-      if(params['emailUsuario'])
+      if(params['nameUsuario'])
       {
-        this.mensaje = params['emailUsuario'];
+        this.mensaje = params['nameUsuario'];
       }
     })
   }

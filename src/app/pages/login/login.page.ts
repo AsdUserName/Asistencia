@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -11,6 +11,13 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LoginPage implements OnInit {
 
+  isAlertOpen = false;
+  public alertButtons = ['OK'];
+
+  setOpen(isOpen: boolean) {
+    this.isAlertOpen = isOpen;
+  }
+
   private todo: FormGroup;
   validateUser: string = "";
 
@@ -19,7 +26,18 @@ export class LoginPage implements OnInit {
     password: ""
   }
 
-  constructor(private router: Router, private storage: Storage, private formBuilder: FormBuilder) { 
+  datosReg: string = "";
+
+  constructor(private router: Router, private storage: Storage, private formBuilder: FormBuilder, private rutaActiva : ActivatedRoute) { 
+
+    this.rutaActiva.queryParams.subscribe(params =>{
+
+      if(params['nameUsuario'])
+      {
+        this.datosReg = params['nameUsuario'];
+      }
+    })
+    
 
     this.todo = this.formBuilder.group({
       title: ['', Validators.required],
@@ -38,8 +56,7 @@ export class LoginPage implements OnInit {
 
     let datosEnviar: NavigationExtras = {
       queryParams: {
-        nameUsuario: this.formLogin.usuario,
-        edad: 24
+        nameUsuario: this.formLogin.usuario
       }
     }
 
