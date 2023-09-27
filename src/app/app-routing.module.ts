@@ -1,18 +1,15 @@
-import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { PageProtegidoGuard } from './guards/page-protegido.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    path: '', redirectTo: 'login', pathMatch: 'full'
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    canActivate: [PageProtegidoGuard]
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),canActivate: [AuthGuard]
   },
   {
     path: 'login',

@@ -13,6 +13,7 @@ export class RegisterPage implements OnInit {
     nombre: "",
     apellido: "",
     nameUsuario: "",
+    email: "",
     password: ""
   }
 
@@ -30,6 +31,7 @@ export class RegisterPage implements OnInit {
         name: this.formRegister.nombre,
         lastName: this.formRegister.apellido,
         usuario: this.formRegister.nameUsuario,
+        email: this.formRegister.email,
         password: this.formRegister.password
       }
     }

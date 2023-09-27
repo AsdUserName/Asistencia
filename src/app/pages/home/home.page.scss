@@ -13,6 +13,9 @@ ion-header{
 ion-menu-button{
   float: left;
 }
+.mensaje{
+  justify-content: center;
+}
 
 .btn-perfil{
   --background: none;
@@ -23,4 +26,19 @@ ion-menu-button{
   --border: none;
   margin-top: -10px;
   margin-bottom: -10px;
+}
+
+.img-Qr{
+  margin-top: 20px;
+  width: 250px;
+}
+
+.centrar{
+  justify-content: center;
+  margin-top: 11%;
+  height: 100%;
+}
+
+.asd{
+  color: lightgray;
 }

@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
 
   isAlertOpen = false;
   public alertButtons = ['OK'];
+auth: any;
 
   setOpen(isOpen: boolean) {
     this.isAlertOpen = isOpen;

@@ -11,42 +11,38 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
-  <div class="m-t">
-    <ion-row>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
+  <div class="  flex-center">
+    <div>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Registrarse</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
           <ion-input [(ngModel)]="formRegister.nombre" type="text" placeholder="Ej: Juan" position="floating"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="floating">Apellido</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Apellido</ion-label>
           <ion-input [(ngModel)]="formRegister.apellido"type="text" placeholder="Ej: Monsalvez"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="floating">Usuario</ion-label>
-          <ion-input [(ngModel)]="formRegister.nameUsuario" type="email" placeholder="Ej: juan123"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Usuario</ion-label>
+          <ion-input [(ngModel)]="formRegister.nameUsuario" type="text" placeholder="Ej: juan123"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Correo electronico</ion-label>
+          <ion-input [(ngModel)]="formRegister.email" type="email" placeholder="Ej: juan123@gmail.com"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
           <ion-input [(ngModel)]="formRegister.password" type="password" placeholder="Ej: Contraseña123"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+          </ion-item>
+          <ion-button (click)="register()" ion-button color="rgb(178, 234, 236)" size="full" class="log-btn">Registrar</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
-  <ion-grid fixed="true">
-    <ion-row>
-      <ion-col  class="centrar">
-          <ion-button (click)="register()" ion-button color="rgb(178, 234, 236)" class="log-btn">Registrar</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 </ion-content>

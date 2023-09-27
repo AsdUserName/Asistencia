@@ -6,6 +6,18 @@
     margin-bottom: 5px;
 }
 
+ion-card-title{
+    color: rgba(5, 97, 104, 0.938);
+}
+
+.forget{
+    text-transform: initial;
+}
+
+.headerr{
+    background-color: rgba(0, 0, 0, 0.048);;
+}
+
 .img-duoc{
     width: 110px;
     height: 50px;
@@ -14,36 +26,17 @@
     margin-bottom: 5px;
 }
 
-.preuba{
-    background-color: rgb(228, 182, 222);
-}
-
 .centrar{
     text-align: center;
 }
 
 .log-btn{
-    width: 100%;
     background-color: rgba(14, 158, 168, 0.767);
     color: azure;
 }
 
 .reg-btn{
-    width: 80%;
+    margin-top: 5%;
     background-color: rgb(99, 100, 107);
     color: azure;
-    margin: 15px;
-    margin-top: 100px;
-}
-
-.m-a{
-    margin-top: 15%;
-    margin-bottom: 10px;
-}
-
-hr{
-    width: 80%;
-    height: 0.5px;
-    background-color: rgb(163, 163, 163);
-    opacity: 0.5;
 }
