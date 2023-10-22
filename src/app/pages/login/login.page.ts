@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { AuthenticationService } from 'src/app/servicios/authentication.service';
 
 
 @Component({
@@ -19,9 +19,6 @@ auth: any;
     this.isAlertOpen = isOpen;
   }
 
-  private todo: FormGroup;
-  validateUser: string = "";
-
   formLogin = {
     usuario: "",
     password: ""
@@ -29,7 +26,10 @@ auth: any;
 
   datosReg: string = "";
 
-  constructor(private router: Router, private storage: Storage, private formBuilder: FormBuilder, private rutaActiva : ActivatedRoute) { 
+  constructor(private router: Router,
+     private storage: Storage,
+      private rutaActiva : ActivatedRoute,
+       private authService: AuthenticationService) { 
 
     this.rutaActiva.queryParams.subscribe(params =>{
 
@@ -38,12 +38,6 @@ auth: any;
         this.datosReg = params['nameUsuario'];
       }
     })
-    
-
-    this.todo = this.formBuilder.group({
-      title: ['', Validators.required],
-      description: ['']
-    });
 
   }
 
@@ -52,8 +46,7 @@ auth: any;
   }
 
   login() {
-
-    console.log(this.formLogin)
+    this.authService.login(this.formLogin.usuario, this.formLogin.password);
 
     let datosEnviar: NavigationExtras = {
       queryParams: {
@@ -61,12 +54,13 @@ auth: any;
       }
     }
 
+    /*
     this.router.navigate(['/home'], datosEnviar);
-
+    */
     //guardar info en el storage
-    this.storage.set("usuario","Juan")
-    this.storage.get("")
-
+    this.storage.set("usuario","Juan");
+    this.storage.get("usuario");
+    
   }
 
 }

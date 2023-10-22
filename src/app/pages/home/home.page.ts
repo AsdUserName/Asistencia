@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ export class HomePage {
 
   mensaje: string = "";
 
-  constructor(private rutaActiva : ActivatedRoute) {
+  constructor(private rutaActiva : ActivatedRoute, private storage:Storage) {
 
     this.rutaActiva.queryParams.subscribe(params =>{
 
@@ -23,6 +24,15 @@ export class HomePage {
 
   accionDelBoton() {
     // Aquí puedes agregar el código para manejar la acción del botón
+  }
+
+  ngOnInit() {
+    
+  }
+
+  async verStorage(){
+    let usuario = await this.storage.get('usuario');
+    console.log("El usuario guardado es:"+ usuario)
   }
 
 }

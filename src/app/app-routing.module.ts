@@ -8,12 +8,12 @@ const routes: Routes = [
     path: '', redirectTo: 'login', pathMatch: 'full'
   },
   {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),canActivate: [AuthGuard]
-  },
-  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),canActivate: [AuthGuard]
   },
   {
     path: 'register',
@@ -32,11 +32,16 @@ const routes: Routes = [
     redirectTo: 'not-found',
     pathMatch: 'full'
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),IonicStorageModule.forRoot()
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    IonicStorageModule.forRoot()
   ],
   exports: [RouterModule]
 })

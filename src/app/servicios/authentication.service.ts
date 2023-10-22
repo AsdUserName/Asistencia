@@ -17,6 +17,9 @@ export class AuthenticationService {
       this.ifLoggedIn();
     });
   }
+
+  
+
   ifLoggedIn() {
     this.storage.get('USER_INFO').then((response) => {
       if (response) {
@@ -24,15 +27,20 @@ export class AuthenticationService {
       }
     });
   }
-  login(email:string) {
-    console.log('login');
+  login(usuario:string, pass: string) {
+    
     var response = {
-      user_email: email
+      formLogin: usuario
     };
+
     this.storage.set('USER_INFO', response).then((response) => {
-      this.router.navigate(['/iniciopage']);
+      this.router.navigate(['/home']);
       this.authState.next(true);
     });
+
+
+   /* 
+     */
   }
   logout() {
     this.storage.remove('USER_INFO').then(() => {
