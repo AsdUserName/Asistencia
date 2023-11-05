@@ -28,14 +28,19 @@ const routes: Routes = [
     loadChildren: () => import('./pages/r-password/r-password.module').then( m => m.RPasswordPageModule)
   },
   {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./pages/usuarios/usuarios.module').then( m => m.UsuariosPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'not-found',
     pathMatch: 'full'
   },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
+
 ];
 
 @NgModule({

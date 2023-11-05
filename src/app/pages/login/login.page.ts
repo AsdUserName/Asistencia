@@ -54,9 +54,9 @@ auth: any;
       }
     }
 
-    /*
+    
     this.router.navigate(['/home'], datosEnviar);
-    */
+    
     //guardar info en el storage
     this.storage.set("usuario","Juan");
     this.storage.get("usuario");
