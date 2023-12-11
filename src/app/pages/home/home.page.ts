@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,13 @@ import { Storage } from '@ionic/storage-angular';
 export class HomePage {
 
   mensaje: string = "";
+  fechaHoy: string = "";
 
-  constructor(private rutaActiva : ActivatedRoute, private storage:Storage) {
-
+  constructor(
+    private rutaActiva : ActivatedRoute, 
+    private storage:Storage
+    ) {
+    
     this.rutaActiva.queryParams.subscribe(params =>{
 
       if(params['nameUsuario'])
@@ -20,6 +25,9 @@ export class HomePage {
         this.mensaje = params['nameUsuario'];
       }
     })
+
+    this.fechaHoy = format(new Date(), 'MM/dd/yyyy');
+
   }
 
   accionDelBoton() {

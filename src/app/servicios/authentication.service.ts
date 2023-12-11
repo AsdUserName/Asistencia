@@ -1,54 +1,51 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage';
-import { ToastController, Platform } from '@ionic/angular';
-import { BehaviorSubject } from 'rxjs';
-@Injectable()
-export class AuthenticationService {
-  authState = new BehaviorSubject(false);
-  constructor(
-    private router: Router,
-    private storage: Storage,
-    private platform: Platform,
-    public toastController: ToastController
-  ) {
-    this.storage.create();
-    this.platform.ready().then(() => {
-      this.ifLoggedIn();
-    });
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { Storage } from '@ionic/storage-angular';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  private userInfo = new BehaviorSubject<any>(null);
+
+  get isLoggedIn(): Observable<boolean> {
+    return this.loggedIn.asObservable();
   }
 
-  
-
-  ifLoggedIn() {
-    this.storage.get('USER_INFO').then((response) => {
-      if (response) {
-        this.authState.next(true);
-      }
-    });
+  get getUserInfo(): Observable<any> {
+    return this.userInfo.asObservable();
   }
-  login(usuario:string, pass: string) {
-    
-    var response = {
-      formLogin: usuario
-    };
 
-    this.storage.set('USER_INFO', response).then((response) => {
-      this.router.navigate(['/home']);
-      this.authState.next(true);
-    });
+  constructor(private storage: Storage) {}
 
+  login(username: string, password: string): Observable<boolean> {
+    // Check if username and password are not empty and have more than 8 characters
+    if (username.trim() !== '' && password.trim() !== '' && username.length > 8 && password.length > 8) {
+      // Mocking user data for demonstration purposes
+      const user = {
+        username: username,
+        // Add other user data if needed
+      };
 
-   /* 
-     */
+      this.loggedIn.next(true);
+      this.userInfo.next(user);
+
+      // Save user information in Ionic Storage
+      this.storage.set('userData', user);
+
+      return of(true); // Indicate successful login
+    }
+
+    return of(false); // Indicate failed login
   }
+
   logout() {
-    this.storage.remove('USER_INFO').then(() => {
-      this.router.navigate(['login']);
-      this.authState.next(false);
-    });
-  }
-  isAuthenticated() {
-    return this.authState.value;
+    this.loggedIn.next(false);
+    this.userInfo.next(null);
+    // Remove user information from Ionic Storage on logout
+    this.storage.remove('userData');
   }
 }
+

@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AuthGuard } from './guards/auth.guard';
 import { IonicStorageModule } from '@ionic/storage-angular';
-import { AuthenticationService } from './servicios/authentication.service';
+import { AuthService } from './servicios/authentication.service';
 import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
@@ -25,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http'
   ],
   providers: [
     AuthGuard,
-    AuthenticationService,
+    AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],

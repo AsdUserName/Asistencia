@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
-import { AuthenticationService } from 'src/app/servicios/authentication.service';
-
+import { AuthService } from 'src/app/servicios/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,57 +9,54 @@ import { AuthenticationService } from 'src/app/servicios/authentication.service'
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
   isAlertOpen = false;
   public alertButtons = ['OK'];
-auth: any;
-
-  setOpen(isOpen: boolean) {
-    this.isAlertOpen = isOpen;
-  }
 
   formLogin = {
-    usuario: "",
-    password: ""
-  }
+    usuario: '',
+    password: '',
+  };
 
-  datosReg: string = "";
+  datosReg: string = '';
 
-  constructor(private router: Router,
-     private storage: Storage,
-      private rutaActiva : ActivatedRoute,
-       private authService: AuthenticationService) { 
-
-    this.rutaActiva.queryParams.subscribe(params =>{
-
-      if(params['nameUsuario'])
-      {
+  constructor(
+    private router: Router,
+    private storage: Storage,
+    private rutaActiva: ActivatedRoute,
+    private authService: AuthService
+  ) {
+    this.rutaActiva.queryParams.subscribe((params) => {
+      if (params['nameUsuario']) {
         this.datosReg = params['nameUsuario'];
       }
-    })
-
+    });
   }
 
   async ngOnInit() {
     await this.storage.create();
   }
 
-  login() {
-    this.authService.login(this.formLogin.usuario, this.formLogin.password);
+  async login() {
+    // Call the login method from AuthService
+    const loginSuccessful = this.authService.login(
+      this.formLogin.usuario,
+      this.formLogin.password
+    );
 
-    let datosEnviar: NavigationExtras = {
-      queryParams: {
-        nameUsuario: this.formLogin.usuario
-      }
+    if (loginSuccessful) {
+      // Save user information to Ionic Storage
+      await this.storage.set('userData', this.formLogin);
+
+      // Navigate to another page with queryParams
+      let datosEnviar: NavigationExtras = {
+        queryParams: {
+          nameUsuario: this.formLogin.usuario,
+        },
+      };
+      this.router.navigate(['/home'], datosEnviar);
+    } else {
+      // Handle unsuccessful login, e.g., show an alert
+      this.isAlertOpen = true;
     }
-
-    
-    this.router.navigate(['/home'], datosEnviar);
-    
-    //guardar info en el storage
-    this.storage.set("usuario","Juan");
-    this.storage.get("usuario");
-    
   }
-
 }
