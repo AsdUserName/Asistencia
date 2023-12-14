@@ -31,10 +31,6 @@ ion-menu-button{
   color: lightgray;
 }
 
-.top-bar{
-  color: rgb(2, 2, 2);
-}
-
 .icon{
   height: 50px;
   width: 20px;
@@ -99,7 +95,7 @@ ion-menu-button{
 
 
 .bot-bar{
-  color: rgb(2, 2, 2);
+  color: rgb(209, 204, 204);
 }
 
 .img-cal{
@@ -130,3 +126,10 @@ ion-menu-button{
   -webkit-border-radius: 50px;
   border-radius: 50px;
  }
+
+ #video {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  display: block;
+}

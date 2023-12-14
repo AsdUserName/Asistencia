@@ -10,18 +10,36 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <div class="m-l divv" style="display: flex;">
-    <!-- Assuming you have an image URL in userInfo.avatar -->
-    <div class="m-l divv" style="display: flex;">
-      <img class="img-usr" src="assets/img/H2.svg">
-     </div>
-    
-     <div *ngIf="userInfo">
-      <h2>{{ userInfo.nombre_completo }}</h2>
-      <p>{{ userInfo.rut }}</p>
-    </div>
-    
-
-  </div>
+  <ion-list>
+    <ion-item *ngFor="let character of characters">
+      <ion-avatar slot="start">
+        <img src="{{character.image}}" alt="">
+      </ion-avatar>
+      <ion-label>{{character.name}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+
+  <ion-toolbar class="bot-bar">
+    <div class="toolbar-buttons" style="display: flex; justify-content: center;">
+        <ion-button routerLink="/calendario" style="--background: transparent;">
+          <div class="divvvv" style="display: flex;">
+            <img class="img-cal" src="assets/img/calendario.png">
+          </div>
+        </ion-button>
+        <ion-button routerLink="/home" style="--background: transparent;">
+          <div class="divvv" style="display: flex;">
+            <img class="img-hom" src="assets/img/home.png">
+          </div>
+        </ion-button>
+        <ion-button routerLink="/login" style="--background: transparent;">
+          <div class="divvvv" style="display: flex;">
+            <img class="img-sig" src="assets/img/sign-out.png">
+          </div>
+        </ion-button>
+    </div>
+    </ion-toolbar>
+  
+  </ion-footer>

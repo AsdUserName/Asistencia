@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
+import { BrowserMultiFormatReader, Result } from '@zxing/library';
 import { format } from 'date-fns';
 
 @Component({
@@ -10,24 +11,55 @@ import { format } from 'date-fns';
 })
 export class HomePage {
 
+  private codeReader: BrowserMultiFormatReader;
   mensaje: string = "";
   fechaHoy: string = "";
+  showQRImage: boolean = true;
 
   constructor(
     private rutaActiva : ActivatedRoute, 
-    private storage:Storage
+    private storage:Storage,
+    private zone: NgZone
     ) {
-    
-    this.rutaActiva.queryParams.subscribe(params =>{
 
-      if(params['nameUsuario'])
-      {
-        this.mensaje = params['nameUsuario'];
-      }
+      this.codeReader = new BrowserMultiFormatReader();
+    
+      this.rutaActiva.queryParams.subscribe(params =>{
+
+        if(params['nameUsuario'])
+        {
+          this.mensaje = params['nameUsuario'];
+        }
     })
 
-    this.fechaHoy = format(new Date(), 'MM/dd/yyyy');
+    this.fechaHoy = format(new Date(), 'dd/MM/yyyy');
 
+  }
+
+  startScanner() {
+    this.showQRImage = false; // Oculta la imagen del código QR al iniciar el escáner
+
+    this.codeReader
+      .decodeOnceFromVideoDevice(undefined, 'video')
+      .then((result: Result) => {
+        this.zone.run(() => {
+          // Manejar el resultado del escaneo QR, por ejemplo, mostrarlo en la consola
+          console.log('QR escaneado:', result.getText());
+          this.showQRImage = true; // Vuelve a mostrar la imagen del código QR después de escanear
+        });
+      })
+      .catch((err) => {
+        console.error('Error al iniciar el escáner:', err);
+        this.showQRImage = true; // Asegúrate de mostrar la imagen del código QR en caso de error
+      });
+  }
+
+  ionViewDidEnter() {
+    this.startScanner();
+  }
+
+  ionViewWillLeave() {
+    this.codeReader.reset();
   }
 
   accionDelBoton() {

@@ -57,34 +57,41 @@
          <ion-label position="fixed">Asistencia</ion-label>
        </ion-item>
     </div>
-   </div>
+  </div>
 
-   <div class="centered-image">
-    <img class="bordered-image" src="assets/img/qrcode.svg">
+  <div class="centered-image">
+    <ion-button (click)="startScanner()" expand="full" fill="outline" color="transparent">
+      <img class="bordered-image" src="assets/img/qrcode.svg">
+      <ion-label>QR</ion-label>
+    </ion-button>
+  </div> 
+
+  <div class="ion-padding">
+    <video id="video" autoplay muted></video>
   </div>
 
  </ion-content>
 
- <ion-footer>
+<ion-footer>
 
-  <ion-toolbar class="bot-bar">
-    <div class="toolbar-buttons" style="display: flex; justify-content: center;">
-       <ion-button routerLink="/calendario" style="--background: transparent;">
-         <div class="divvvv" style="display: flex;">
-           <img class="img-cal" src="assets/img/calendario.png">
-         </div>
-       </ion-button>
-       <ion-button routerLink="/home" style="--background: transparent;">
-         <div class="divvv" style="display: flex;">
-           <img class="img-hom" src="assets/img/home.png">
-         </div>
-       </ion-button>
-       <ion-button routerLink="/login" style="--background: transparent;">
-         <div class="divvvv" style="display: flex;">
-           <img class="img-sig" src="assets/img/sign-out.png">
-         </div>
-       </ion-button>
-    </div>
-   </ion-toolbar>
+<ion-toolbar class="bot-bar">
+  <div class="toolbar-buttons" style="display: flex; justify-content: center;">
+      <ion-button routerLink="/calendario" style="--background: transparent;">
+        <div class="divvvv" style="display: flex;">
+          <img class="img-cal" src="assets/img/calendario.png">
+        </div>
+      </ion-button>
+      <ion-button routerLink="/home" style="--background: transparent;">
+        <div class="divvv" style="display: flex;">
+          <img class="img-hom" src="assets/img/home.png">
+        </div>
+      </ion-button>
+      <ion-button routerLink="/login" style="--background: transparent;">
+        <div class="divvvv" style="display: flex;">
+          <img class="img-sig" src="assets/img/sign-out.png">
+        </div>
+      </ion-button>
+  </div>
+  </ion-toolbar>
 
- </ion-footer>
+</ion-footer>
